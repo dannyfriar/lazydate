@@ -1,11 +1,11 @@
 import math
 from typing import List, Tuple
 
-from keras.utils import Sequence
+from tensorflow.keras.utils import Sequence
 
 from lazydate.data_generation import generate_date
-from lazydate.model.config import VOCABULARY, DIGITS, UNK_TOKEN, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
-from lazydate.model.vectorizer import CharVectorizer
+from lazydate.models.config import VOCABULARY, DIGITS, UNK_TOKEN, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
+from lazydate.models.vectorizer import CharVectorizer
 
 
 class DataGenerator(Sequence):

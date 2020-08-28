@@ -3,10 +3,10 @@ from typing import List
 import numpy as np
 from keras.callbacks import EarlyStopping
 
-from lazydate.model.config import VOCABULARY, DIGITS, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
-from lazydate.model.generator import DataGenerator
-from lazydate.model.tf_model import lstm_encoder_decoder
-from lazydate.model.vectorizer import CharVectorizer
+from lazydate.models.config import VOCABULARY, DIGITS, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
+from lazydate.models.generator import DataGenerator
+from lazydate.models.tf_model import lstm_encoder_decoder
+from lazydate.models.vectorizer import CharVectorizer
 
 
 class DateModel:

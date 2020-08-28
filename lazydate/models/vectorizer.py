@@ -2,7 +2,7 @@ from typing import List, Dict
 
 import numpy as np
 
-from lazydate.model.config import UNK_TOKEN, MAX_SEQUENCE_LEN
+from lazydate.models.config import UNK_TOKEN, MAX_SEQUENCE_LEN
 
 
 class CharVectorizer:
