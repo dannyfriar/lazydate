@@ -1,7 +1,7 @@
 from typing import List
 
 import numpy as np
-from keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import EarlyStopping
 
 from lazydate.models.config import VOCABULARY, DIGITS, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
 from lazydate.models.generator import DataGenerator
