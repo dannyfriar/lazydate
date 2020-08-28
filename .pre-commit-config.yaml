@@ -1,0 +1,26 @@
+repos:
+- repo: local
+  hooks:
+  - id: isort
+    name: isort
+    files: '^lazydate'
+    stages: [commit]
+    language: system
+    entry: poetry run isort
+    types: [python]
+
+  - id: black
+    name: black
+    files: '^lazydate'
+    stages: [commit]
+    language: system
+    entry: poetry run black
+    types: [python]
+
+  - id: flake8
+    name: flake8
+    files: '^lazydate'
+    stages: [commit]
+    language: system
+    entry: poetry run flake8
+    types: [python]
