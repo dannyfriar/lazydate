@@ -17,6 +17,9 @@ babel = "^2.8.0"
 nlpaug = "^0.0.14"
 Random-Word = "^1.0.4"
 nltk = "^3.5"
+black = "^20.8b1"
+flake8 = "^3.8.3"
+mypy = "^0.782"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
