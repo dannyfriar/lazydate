@@ -1,0 +1,2 @@
+model_checkpoint_path: "lstm_date_model_v01"
+all_model_checkpoint_paths: "lstm_date_model_v01"
