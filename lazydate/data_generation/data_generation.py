@@ -1,23 +1,23 @@
 import datetime
-from typing import Tuple, Dict, Any
+from typing import Any, Dict, Tuple
 
-import numpy as np
 import nlpaug.augmenter.char as nac
-from nltk.tokenize import sent_tokenize
+import numpy as np
 from babel.dates import format_datetime
+from nltk.tokenize import sent_tokenize
 
 from lazydate.data_generation.config import (
     DAY_FORMATS,
-    MONTH_FORMATS,
-    YEAR_FORMATS,
-    SECOND_FORMATS,
-    MINUTE_FORMATS,
     HOUR_FORMATS,
-    TIMEZONE_FORMATS,
-    TIME_SEPARATORS,
-    SEPARATOR_FREQUENCY,
     LOCALES,
+    MINUTE_FORMATS,
+    MONTH_FORMATS,
+    SECOND_FORMATS,
+    SEPARATOR_FREQUENCY,
+    TIME_SEPARATORS,
+    TIMEZONE_FORMATS,
     WIKIDATA_LOC,
+    YEAR_FORMATS,
 )
 
 wiki_sentences = None
@@ -125,6 +125,7 @@ def random_noise_dict(
         "aug_char_action": np.random.choice(["insert", "substitute"]),
         "place_in_sentence": place_in_sentence,
         "sentence": get_random_wiki_sentence() if place_in_sentence else "",
+        "lowercase": np.random.random() < 0.2,
     }
 
     day_suffix = ""
@@ -152,10 +153,8 @@ def put_datestr_in_sentence(datestr: str, sentence: str):
 def apply_noise(
     datestr: str, format_dict: Dict[str, str], noise_dict: Dict[str, Any]
 ) -> str:
-    out = datestr
     sep = format_dict["separator"]
     sep = sep[0] if len(sep) > 1 else sep
-
     date_parts = datestr.split(sep)
 
     if noise_dict["append_day_suffix"]:
@@ -171,6 +170,9 @@ def apply_noise(
         date_parts[1] = aug.augment(date_parts[1])
 
     out = f"{sep}".join(date_parts)
+
+    if noise_dict["lowercase"]:
+        out = out.lower()
 
     if noise_dict["place_in_sentence"]:
         out = put_datestr_in_sentence(out, noise_dict["sentence"])
