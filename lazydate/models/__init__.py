@@ -1,1 +1,1 @@
-from .model import *
+from .date_model import DateModel

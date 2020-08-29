@@ -17,10 +17,10 @@ repos:
     entry: poetry run black
     types: [python]
 
-  - id: flake8
-    name: flake8
-    files: '^lazydate'
-    stages: [commit]
-    language: system
-    entry: poetry run flake8
-    types: [python]
+#  - id: flake8
+#    name: flake8
+#    files: '^lazydate'
+#    stages: [commit]
+#    language: system
+#    entry: poetry run flake8
+#    types: [python]

@@ -3,7 +3,12 @@ from typing import List
 import numpy as np
 from tensorflow.keras.callbacks import EarlyStopping
 
-from lazydate.models.config import VOCABULARY, DIGITS, MODEL_INPUT_NAME, MODEL_OUTPUT_NAME
+from lazydate.models.config import (
+    DIGITS,
+    MODEL_INPUT_NAME,
+    MODEL_OUTPUT_NAME,
+    VOCABULARY,
+)
 from lazydate.models.generator import DataGenerator
 from lazydate.models.tf_model import lstm_encoder_decoder
 from lazydate.models.vectorizer import CharVectorizer
@@ -21,7 +26,8 @@ class DateModel:
         )
 
     def fit(
-        self, training_examples: int = 200000,
+        self,
+        training_examples: int = 200000,
         validation_examples: int = 10000,
         epochs: int = 10,
         patience: int = 2,
