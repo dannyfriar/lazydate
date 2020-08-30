@@ -119,6 +119,8 @@ def random_noise_dict(
     append_day_suffix = format_dict["day"] == "dd" and np.random.random() <= 0.5
     place_in_sentence = np.random.random() <= 0.5
 
+    # TODO: add noise to end of string without separator
+
     gen_dict = {
         "locale": np.random.choice(LOCALES),
         "append_day_suffix": append_day_suffix,
