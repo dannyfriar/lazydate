@@ -10,11 +10,14 @@ TIMEZONE_FORMATS = ["", "", "", "", "", "z", "zz", "zzz", "zzzz"]
 TIME_SEPARATORS = [":"]
 SEPARATOR_FREQUENCY = {
     ".": 0.1,
+    ". ": 0.1,
     ",": 0.1,
-    "/": 0.15,
-    "-": 0.15,
+    ", ": 0.1,
+    "/": 0.1,
+    "/ ": 0.1,
+    "-": 0.1,
     "''": 0.1,
-    " ": 0.4,
+    " ": 0.2,
 }
 BUILT_IN_FORMATS = ["short", "medium", "long", "full"]
 LOCALES = babel.localedata.locale_identifiers()
