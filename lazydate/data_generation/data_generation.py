@@ -55,9 +55,10 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
 
     append_time = np.random.rand() <= 0.5
     drop_day = date.day == 1 and np.random.rand() <= 0.3
+    month_format = np.random.choice(MONTH_FORMATS)
     gen_dict = {
         "day": np.random.choice(DAY_FORMATS),
-        "month": np.random.choice(MONTH_FORMATS),
+        "month": month_format,
         "year": year_format,
         "separator": np.random.choice(
             possible_separators, p=list(SEPARATOR_FREQUENCY.values())
@@ -65,6 +66,10 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
         "append_time": append_time,
         "drop_day": drop_day,
     }
+    gen_dict["reverse_str_month_day"] = (
+        np.random.rand() <= 0.3 and len(month_format) > 2
+    )
+
     if append_time:
         time_gen_dict = {
             "second": np.random.choice(SECOND_FORMATS),
@@ -86,6 +91,10 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
 
     if drop_day:
         format_date_str = f"{gen_dict['month']}{sep}{gen_dict['year']}"
+    elif gen_dict["reverse_str_month_day"]:
+        format_date_str = (
+            f"{gen_dict['month']}{sep}{gen_dict['day']}{sep}{gen_dict['year']}"
+        )
     else:
         format_date_str = (
             f"{gen_dict['day']}{sep}{gen_dict['month']}{sep}{gen_dict['year']}"
