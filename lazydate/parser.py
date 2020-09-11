@@ -7,7 +7,7 @@ import tensorflow as tf
 from lazydate.models import DateModel
 from lazydate.models.config import MAX_SEQUENCE_LEN
 
-tf.config.set_visible_devices([], "GPU")
+# tf.config.set_visible_devices([], "GPU")
 
 logger = logging.getLogger(__name__)
 
