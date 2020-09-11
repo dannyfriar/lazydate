@@ -193,7 +193,9 @@ def apply_noise(
         elif noise_dict["noisy_separator"] and rand_val <= 0.5:
             part_sep += "".join(np.random.choice(ADDITIONAL_PUNCTUATION, size=2))
 
-        if idx > 0:
+        if idx == 0:
+            out += date_part
+        else:
             out += f"{part_sep}{date_part}"
 
     # out = f"{sep}".join(date_parts)
