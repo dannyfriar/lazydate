@@ -19,6 +19,9 @@ SEPARATOR_FREQUENCY = {
     "''": 0.1,
     " ": 0.2,
 }
+ADDITIONAL_PUNCTUATION = [
+    " ", ",", ".", "-", "/", "'", "*", "&", "$", "£", "@", "!", ")", "(", "?",
+]
 BUILT_IN_FORMATS = ["short", "medium", "long", "full"]
 LOCALES = babel.localedata.locale_identifiers()
 LOCALES = [l for l in LOCALES if "en_" in l]

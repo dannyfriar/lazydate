@@ -17,7 +17,7 @@ from lazydate.data_generation.config import (
     TIME_SEPARATORS,
     TIMEZONE_FORMATS,
     WIKIDATA_LOC,
-    YEAR_FORMATS,
+    YEAR_FORMATS, ADDITIONAL_PUNCTUATION,
 )
 
 wiki_sentences = None
@@ -138,6 +138,7 @@ def random_noise_dict(
         "place_in_sentence": place_in_sentence,
         "sentence": get_random_wiki_sentence() if place_in_sentence else "",
         "lowercase": np.random.random() < 0.2,
+        "noisy_separator": np.random.random() <= 0.3,
     }
 
     day_suffix = ""
@@ -181,7 +182,21 @@ def apply_noise(
         )
         date_parts[1] = aug.augment(date_parts[1])
 
-    out = f"{sep}".join(date_parts)
+    out = ""
+    for idx, date_part in enumerate(date_parts):
+        part_sep = sep
+        rand_val = np.random.random()
+        if noise_dict["noisy_separator"] and rand_val <= 0.15:
+            part_sep += " "
+        if noise_dict["noisy_separator"] and rand_val <= 0.15:
+            part_sep = " " + part_sep
+        elif noise_dict["noisy_separator"] and rand_val <= 0.5:
+            part_sep += "".join(np.random.choice(ADDITIONAL_PUNCTUATION, size=2))
+
+        if idx > 0:
+            out += f"{part_sep}{date_part}"
+
+    # out = f"{sep}".join(date_parts)
 
     if noise_dict["lowercase"]:
         out = out.lower()
