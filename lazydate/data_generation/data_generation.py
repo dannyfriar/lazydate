@@ -48,7 +48,8 @@ def random_date(n_years: int = 200) -> Tuple[datetime.datetime, Dict[str, int]]:
 def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
     possible_separators = list(SEPARATOR_FREQUENCY.keys())
 
-    if date.year >= datetime.datetime.now().year + 1:
+    current_year = datetime.datetime.now().year
+    if current_year - 50 <= date.year <= current_year + 50:
         year_format = np.random.choice(YEAR_FORMATS)
     else:
         year_format = "yyyy"
