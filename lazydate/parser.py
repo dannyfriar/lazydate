@@ -15,7 +15,7 @@ def _load_date_model():
     global _date_model
     if not _date_model:
         _date_model = DateModel()
-        _date_model.load_weights("saved_models/lstm_date_model_v02")
+        _date_model.load_weights("saved_models/lstm_date_model_v04")
     return _date_model
 
 
