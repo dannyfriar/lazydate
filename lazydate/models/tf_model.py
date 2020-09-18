@@ -32,17 +32,15 @@ def lstm_encoder_decoder(
     lstm_hidden_dim: int = 64,
     learning_rate: float = 1e-3,
 ):
-    # Encoder
-    _input = Input(shape=(input_sequence_len,), dtype="int32", name=MODEL_INPUT_NAME)
+    _input = Input(shape=(input_sequence_len,), name=MODEL_INPUT_NAME)
     embedding = Embedding(
         output_dim=embedding_dim, input_dim=input_vocab_size, mask_zero=False
     )(_input)
-    encoded = Bidirectional(LSTM(lstm_hidden_dim, return_sequences=False))(embedding)
+    encoding = Bidirectional(LSTM(lstm_hidden_dim, return_sequences=False))(embedding)
+    repeat_encoding = RepeatVector(output_sequence_len)(encoding)
 
-    # Decoder
-    repeated = RepeatVector(output_sequence_len)(encoded)
-    decoded = LSTM(lstm_hidden_dim, return_sequences=True)(repeated)
-    _output = TimeDistributed(Dense(output_vocab_size, activation="softmax"))(decoded)
+    decoding = LSTM(lstm_hidden_dim, return_sequences=True)(repeat_encoding)
+    _output = TimeDistributed(Dense(output_vocab_size, activation="softmax"))(decoding)
 
     model = Model(inputs=[_input], outputs={MODEL_OUTPUT_NAME: _output})
     optimizer = Adam(lr=learning_rate)
