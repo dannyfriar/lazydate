@@ -107,7 +107,7 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
         )
     format_time_str = ""
 
-    if append_time:
+    if append_time and not gen_dict["reverse_date"]:
         sep = gen_dict["time_separator"]
         format_time_str = f" {gen_dict['hour']}{sep}{gen_dict['minute']}"
         if np.random.random() <= 0.5:
@@ -147,7 +147,7 @@ def random_noise_dict(
     }
 
     day_suffix = ""
-    if append_day_suffix:
+    if append_day_suffix and not format_dict["reverse_date"]:
         if date.day in [1, 21, 31]:
             day_suffix = "st"
         elif date.day in [2, 22]:
