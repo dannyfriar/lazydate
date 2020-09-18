@@ -15,11 +15,13 @@ clean_dates = [
     ("8 dec 20", datetime(2020, 12, 8)),
     ("8th december '20", datetime(2020, 12, 8)),
     ("22 aug 93", datetime(1993, 8, 22, 0, 0)),
+    ("12,08,1905", datetime(1905, 8, 12)),
 ]
 
 
 noisy_dates = [
     ("20./n0vembr/2020", datetime(2020, 11, 20, 0, 0)),
+    # ("1907-!£Sep-13", datetime(1907, 9, 13)),
 ]
 
 
@@ -30,6 +32,10 @@ surrounding_text = [
     (
         "The Original Amateur Hour , which began on radio in the 1930s under original 1/04/ @43",
         datetime(1943, 4, 1),
+    ),
+    (
+        "There is , however , a danger associated with any heavy gas in large quantities : it may sit invisibly in a container , and if 02-01-&@1907 2:24:28 am person enters a conta",
+        datetime(1907, 1, 2),
     ),
 ]
 

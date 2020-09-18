@@ -48,8 +48,9 @@ def random_date(n_years: int = 200) -> Tuple[datetime.datetime, Dict[str, int]]:
 def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
     possible_separators = list(SEPARATOR_FREQUENCY.keys())
 
+    reverse_date = np.random.rand() <= 0.3
     current_year = datetime.datetime.now().year
-    if current_year - 80 <= date.year <= current_year + 20:
+    if not reverse_date and current_year - 80 <= date.year <= current_year + 20:
         year_format = np.random.choice(YEAR_FORMATS)
     else:
         year_format = "yyyy"
@@ -66,7 +67,7 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
         ),
         "append_time": append_time,
         "drop_day": drop_day,
-        "reverse_date": np.random.rand() <= 0.3,
+        "reverse_date": reverse_date,
     }
     gen_dict["reverse_str_month_day"] = (
         np.random.rand() <= 0.3 and len(month_format) > 2
@@ -97,7 +98,7 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
         format_date_str = (
             f"{gen_dict['month']}{sep}{gen_dict['day']}{sep}{gen_dict['year']}"
         )
-    elif gen_dict["reverse_date"]:
+    elif reverse_date:
         format_date_str = (
             f"{gen_dict['year']}{sep}{gen_dict['month']}{sep}{gen_dict['day']}"
         )
@@ -107,7 +108,7 @@ def random_format(date: datetime.datetime) -> Tuple[str, Dict[str, str]]:
         )
     format_time_str = ""
 
-    if append_time and not gen_dict["reverse_date"]:
+    if append_time and not reverse_date:
         sep = gen_dict["time_separator"]
         format_time_str = f" {gen_dict['hour']}{sep}{gen_dict['minute']}"
         if np.random.random() <= 0.5:
