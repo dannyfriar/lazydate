@@ -136,6 +136,12 @@ def random_noise_dict(
     place_in_sentence = np.random.random() <= 0.5
 
     # TODO: add noise to end of string without separator
+    casing_rand_val = np.random.rand()
+    casing = None
+    if casing_rand_val <= 0.15:
+        casing = "uppercase"
+    elif casing_rand_val <= 0.3:
+        casing = "lowercase"
 
     gen_dict = {
         "locale": np.random.choice(LOCALES),
@@ -143,7 +149,7 @@ def random_noise_dict(
         "aug_char_action": np.random.choice(["insert", "substitute"]),
         "place_in_sentence": place_in_sentence,
         "sentence": get_random_wiki_sentence() if place_in_sentence else "",
-        "lowercase": np.random.random() < 0.2,
+        "casing": casing,
         "noisy_separator": np.random.random() <= 0.3,
     }
 
@@ -205,8 +211,9 @@ def apply_noise(
             out += f"{part_sep}{date_part}"
 
     # out = f"{sep}".join(date_parts)
-
-    if noise_dict["lowercase"]:
+    if noise_dict["casing"] == "uppercase":
+        out = out.upper()
+    elif noise_dict["casing"] == "lowercase":
         out = out.lower()
 
     if noise_dict["place_in_sentence"]:

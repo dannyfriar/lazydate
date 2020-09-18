@@ -1,6 +1,6 @@
 ## Lazydate
 
-Small python date-parsing library to convert noisy date strings to Python `datetime.datetime` objects with an encoder-decoder model.
+Small python date-parsing library to convert noisy date strings to Python `datetime.datetime` objects and extract dates from short texts (using an encoder-decoder model).
 
 Designed to be robust to mis-spellings, different date formats and surrounding text.
 
