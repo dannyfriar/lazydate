@@ -37,6 +37,17 @@ surrounding_text = [
         "There is , however , a danger associated with any heavy gas in large quantities : it may sit invisibly in a container , and if 02-01-&@1907 2:24:28 am person enters a conta",
         datetime(1907, 1, 2),
     ),
+    # (
+    #     "The residence also became known as the Spencer House after Pitman sold it to his business 2005.J$ne. 12 Captain Thomas Spencer .",
+    #     datetime(2005, 6, 12),
+    # ),
+]
+
+
+no_dates = [
+    ("lazydate", None),
+    ("Subsequently , the system moved over the Yucatán Peninsula .", None),
+    ("In 1860 he was chosen president of the American Temperance Union .", None),
 ]
 
 test_dates = clean_dates + noisy_dates + surrounding_text

@@ -15,6 +15,9 @@ ld.parse("the event will happen on 19 december '20")
 >>> datetime.datetime(2020, 12, 19, 0, 0)
 
 ld.parse("20./n0vembr/2020")
->>>datetime.datetime(2020, 11, 20, 0, 0)
+>>> datetime.datetime(2020, 11, 20, 0, 0)
+
+ld.parse_batch(["22 aug 93", "20./n0vembr/2020"])
+>>> [datetime.datetime(1993, 8, 22, 0, 0), datetime.datetime(2020, 11, 20, 0, 0)]
 ```
 
